@@ -1,0 +1,64 @@
+{
+  "name": "daily-fashion",
+  "version": "0.1",
+  "description": "Daily Fashion site",
+  "author": "Mike Polischuk",
+  "scripts": {
+    "dev": "nuxt",
+    "production": "nuxt build",
+    "now-build": "nuxt generate",
+    "css-build": "node-sass --omit-source-map-url sass/mystyles.scss css/mystyles.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikemarsian/daily-fashion.git"
+  },
+  "keywords": [
+    "css",
+    "js",
+    "html",
+    "template",
+    "ecommerce",
+    "vuejs",
+    "theme",
+    "responsive",
+    "nuxtjs"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@nuxtjs/font-awesome": "^1.0.4",
+    "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "bulma": "^0.7.5",
+    "nuxt": "^2.8.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.5",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "~7.5.5",
+    "@vue/cli-plugin-babel": "~3.9.2",
+    "@vue/cli-service": "~3.9.3",
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "~7.1.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": "plugin:vue/essential",
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
