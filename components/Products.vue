@@ -8,7 +8,7 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ product.title }}</p>
+          <p class="title is-4">{{ product.name }}</p>
         </div>
       </div>
       <div class="content is-clearfix">
@@ -37,10 +37,8 @@
         name: 'product_detail-id',
         params: {
           id: product.id,
-          title: product.title,
+          title: product.name,
           price: product.price,
-          rating: product.ratings,
-          reviews: product.reviews,
           isAddedBtn: product.isAddedBtn
         }
       }"

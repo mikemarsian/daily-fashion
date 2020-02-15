@@ -12,7 +12,7 @@
 <script>
 import DFProducts from '../Products';
 import ProductService from '@/services/ProductService.js';
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'productsList',
@@ -31,7 +31,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['loadProducts']),
+    ...mapMutations(['loadProducts', 'loadGeneralProductData']),
   },
 
   created() {
@@ -43,7 +43,15 @@ export default {
         })
         .catch(error => {
           console.log('Error:' + error.response)
+        });
+      ProductService.getGeneralProductData()
+        .then(response => {
+          console.log('Committing general product data...');
+          this.loadGeneralProductData(response.data);
         })
+        .catch(error => {
+          console.log('Error:' + error.response)
+        });
     }
   }
 };

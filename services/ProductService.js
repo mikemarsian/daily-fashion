@@ -15,5 +15,8 @@ export default {
   },
   getProduct(id) {
     return apiClient.get('/products/' + id)
-  }
+  },
+  getGeneralProductData() {
+    return apiClient.get('/productData')
+  },
 }

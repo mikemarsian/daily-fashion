@@ -2,122 +2,133 @@
   "products":[
     {
       "id":1,
-      "title":"Product 1",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "name":"The Special Pantsuit",
+      "description":"This is the coolest pantsuit you've ever seen. Fits like a dream. Wear this everywhere, and nowhere.",
+      "bulletDescription": "So baggy and yet hugs all the right places. Big hidden pockets. Front zipper so you can zip yourself in. Silk material, reinforced stitching",
       "price":50,
-      "ratings":3,
-      "reviews":5,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
+      "quantities": {
+        "xs": 0,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      },
+      "sizeInfo": "small",
+      "materialInfo": "silk",
+      "wearInfo": "baggy"
     },
     {
       "id":2,
-      "title":"Product 2",
+      "name":"Product 2",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "bulletDescription": "So baggy and yet hugs all the right places. Big hidden pockets. Front zipper so you can zip yourself in. Silk material, reinforced stitching",
       "price":35,
-      "ratings":5,
-      "reviews":10,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
+      "quantities": {
+        "xs": 0,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      },
+      "sizeInfo": "",
+      "materialInfo": "silk",
+      "wearInfo": "baggy"
     },
     {
       "id":3,
-      "title":"Product 3",
+      "name":"Product 3",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "bulletDescription": "So baggy and yet hugs all the right places. Big hidden pockets. Front zipper so you can zip yourself in. Silk material, reinforced stitching",
       "price":110,
-      "ratings":2,
-      "reviews":3,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
+      "quantities": {
+        "xs": 0,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      },
+      "sizeInfo": "big",
+      "materialInfo": "silk",
+      "wearInfo": "baggy"
     },
     {
       "id":4,
-      "title":"Product 4",
+      "name":"Product 4",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "bulletDescription": "So baggy and yet hugs all the right places. Big hidden pockets. Front zipper so you can zip yourself in. Silk material, reinforced stitching",
       "price":50,
-      "ratings":1,
-      "reviews":0,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
+      "quantities": {
+        "xs": 0,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      },
+      "sizeInfo": "big",
+      "materialInfo": "silk",
+      "wearInfo": "baggy"
     },
     {
       "id":5,
-      "title":"Product 5",
+      "name":"Product 5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "bulletDescription": "So baggy and yet hugs all the right places. Big hidden pockets. Front zipper so you can zip yourself in. Silk material, reinforced stitching",
       "price":35,
-      "ratings":4,
-      "reviews":2,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
+      "quantities": {
+        "xs": 0,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      },
+      "sizeInfo": "big",
+      "materialInfo": "silk",
+      "wearInfo": "baggy"
     },
     {
       "id":6,
-      "title":"Product 6",
+      "name":"Product 6",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "bulletDescription": "So baggy and yet hugs all the right places. Big hidden pockets. Front zipper so you can zip yourself in. Silk material, reinforced stitching",
       "price":110,
-      "ratings":5,
-      "reviews":1,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
-    },
-    {
-      "id":7,
-      "title":"Product 7",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "price":50,
-      "ratings":5,
-      "reviews":7,
-      "isAddedToCart":false,
-      "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
-    },
-    {
-      "id":8,
-      "title":"Product 8",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "price":35,
-      "ratings":3,
-      "reviews":0,
-      "isAddedToCart":false,
-      "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
-    },
-    {
-      "id":9,
-      "title":"Product 9",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "price":110,
-      "ratings":4,
-      "reviews":2,
-      "isAddedToCart":false,
-      "isAddedBtn":false,
-      "isFavourite":false,
-      "quantity":1
-
+      "quantities": {
+        "xs": 2,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      },
+      "sizeInfo": "big",
+      "materialInfo": "silk",
+      "wearInfo": "baggy"
     }
   ],
+  "productData": {
+    "sizeInfos": {
+      "small": "These are sized a little small. We advise ordering the next size up from what you normally wear.",
+      "big": "These are sized a little large. We advise ordering the next size down from what you normally wear."
+    },
+    "materialInfos": {
+      "silk": "100% silk which feels very nice",
+      "cotton": "100% organic cotton"
+    },
+    "wearInfos": {
+      "baggy": "These are meant to be warn slightly baggy so that they are comfortable. Zipper front with rolled up sleeves. Hip pockets on the front",
+      "tight": "These will cover your body nice and tight"
+    }
+  },
   "userInfo":{
     "isLoggedIn":false,
     "isSignedUp":false,

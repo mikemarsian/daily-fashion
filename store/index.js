@@ -12,6 +12,12 @@ export const state = () => ({
     openLoginModal: false,
     openSignupModal: false,
     openCheckoutModal: false
+  },
+  productData: {
+    sizeInfos: {
+      "small": "",
+      "big": ""
+    }
   }
 });
 
@@ -44,12 +50,18 @@ export const getters = {
   },
   quantity: state => {
     return state.products.quantity;
+  },
+  getSizeInfos: state => {
+    return state.productData.sizeInfos;
   }
 };
 
 export const mutations = {
   loadProducts: (state, products) => {
     state.products = products;
+  },
+  loadGeneralProductData: (state, productData) => {
+    state.productData = productData;
   },
   addToCart: (state, id) => {
     state.products.forEach(el => {

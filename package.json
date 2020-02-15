@@ -1,6 +1,6 @@
 {
   "name": "daily-fashion",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Daily Fashion site",
   "author": "Mike Polischuk",
   "scripts": {
@@ -29,13 +29,13 @@
   "license": "MIT",
   "dependencies": {
     "@nuxtjs/font-awesome": "^1.0.4",
+    "@storefront-ui/vue": "^0.5.1",
     "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "bulma": "^0.7.5",
     "nuxt": "^2.8.1",
     "vue": "^2.6.10",
-    "vue-router": "^3.1.5",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.1"
   },
