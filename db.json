@@ -17,7 +17,8 @@
       },
       "sizeInfo": "small",
       "materialInfo": "silk",
-      "wearInfo": "baggy"
+      "wearInfo": "baggy",
+      "galleryImagesCount": 4
     },
     {
       "id":2,
@@ -36,7 +37,8 @@
       },
       "sizeInfo": "",
       "materialInfo": "silk",
-      "wearInfo": "baggy"
+      "wearInfo": "baggy",
+      "galleryImagesCount": 1
     },
     {
       "id":3,

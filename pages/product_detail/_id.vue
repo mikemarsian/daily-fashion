@@ -1,10 +1,17 @@
 <template>
   <div class="section">
     <div class="card is-clearfix columns">
-        <figure class="card-image is-480x480 column is-one-thirds">
-          <img src="https://bulma.io/images/placeholders/480x480.png">
-        </figure>
-        <div class="card-content column is-two-thirds">
+      <div class="card-content column is-half">
+        <carousel :perPage="1" autoplay="true" autoplayHoverPause="true">
+          <template v-for="imageSrc in galleryImages">
+            <slide>
+              <img :src="imageSrc"/>
+            </slide>
+          </template>
+        </carousel>
+      </div>
+<!--          <img src="https://bulma.io/images/placeholders/480x480.png">-->
+        <div class="card-content column is-half">
           <div class="card-content__title">
             <h2 class="title is-4">{{ product.name }}
             </h2>
@@ -17,6 +24,14 @@
               <ul v-for="bullet in descBullets">
                 <li> {{ bullet }} </li>
               </ul>
+              <label class="sf-options__label">Material</label>
+              <ul>
+                <li>{{ this.materialInfoDesc }}</li>
+                <li>{{ this.wearInfoDesc }}</li>
+              </ul>
+              <p>
+
+              </p>
             </div>
           </div>
           <SfDivider />
@@ -45,6 +60,13 @@
             </SfPrice>
           </div>
           <div class="card-content__btn is-pulled-right">
+<!--            <SfAddToCart-->
+<!--              v-if="!isAddedBtn"-->
+<!--              v-model="selectedQuantity"-->
+<!--              :disabled="noSizesLeft()"-->
+<!--              @click="() => {}"-->
+<!--              @input="onSelectQuantity(product.id)"-->
+<!--            />-->
             <button class="button is-primary"
                     v-if="!isAddedBtn"
                     :disabled="noSizesLeft()"
@@ -57,8 +79,9 @@
 </template>
 
 <script>
-  import { SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert } from "@storefront-ui/vue";
+  import { SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart } from "@storefront-ui/vue";
   import { mapGetters, mapMutations } from 'vuex';
+  import { Carousel, Slide } from 'vue-carousel';
 
   export default {
   name: 'product_detail-id',
@@ -68,7 +91,8 @@
   },
 
   components: {
-    SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert
+    SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart,
+    Carousel, Slide
   },
 
   data () {
@@ -78,6 +102,11 @@
       sizeLabel: "Size",
       sizeType: "text",
       sizeInfoDesc: "",
+      gallerySliderOptions: { autoplay: false, rewind: true },
+      materialInfoDesc: "",
+      galleryImages: [],
+      currentGalleryImage: 1,
+      wearInfoDesc: "",
       options: {
         text: [
           {value: "xs", text: "XS"},
@@ -98,7 +127,9 @@
           "l": 1,
           "xl": 1
         },
-        sizeInfo: ""
+        sizeInfo: "",
+        materialInfo: "",
+        wearInfo: ""
       },
       selectedQuantity: 1,
       quantities: []
@@ -110,8 +141,10 @@
     console.log(`Loaded product: ${this.product.name}`);
 
     this.sizeInfoDesc = this.product.sizeInfo.length ? this.getSizeInfos[this.product.sizeInfo] : "";
-
+    this.materialInfoDesc = this.product.materialInfo.length ? this.getMaterialInfos[this.product.materialInfo] : "";
+    this.wearInfoDesc = this.product.wearInfo.length ? this.getWearInfos[this.product.wearInfo] : "";
     this.descBullets = this.product.bulletDescription.split('.');
+    this.galleryImages = this.getGalleryImages();
 
     this.setQuantityForSize(this.sizeValue);
     this.populateQuantities();
@@ -121,10 +154,26 @@
     isAddedBtn () {
       return this.product.isAddedBtn;
     },
-    ...mapGetters(['getProductById', 'getSizeInfos'])
+    ...mapGetters(['getProductById', 'getSizeInfos', 'getMaterialInfos', 'getWearInfos'])
   },
 
   methods: {
+    getGalleryImages() {
+      let productImagesArray = [];
+      console.log(`Including ${this.product.galleryImagesCount} galleryImages`);
+      for(let i = 1; i < this.product.galleryImagesCount; ++i) {
+        productImagesArray.push(this.getGalleryImagePath(this.product.id, i));
+        console.log('galleryImages: ' + JSON.stringify(productImagesArray));
+      }
+      return productImagesArray;
+    },
+    getGalleryImagePath(product_id, index) {
+      return require(`~/assets/img/products/${product_id}/gallery/${index}.jpg`)
+    },
+    galleryImageClicked(){
+      console.log('galleryImageClicked');
+      this.currentGalleryImage ++ ;
+    },
     noSizesLeft() {
       return this.quantitiesForSize(this.sizeValue) < 1;
     },

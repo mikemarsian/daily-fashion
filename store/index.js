@@ -15,8 +15,11 @@ export const state = () => ({
   },
   productData: {
     sizeInfos: {
-      "small": "",
-      "big": ""
+    },
+    materialInfos: {
+    },
+    wearInfos: {
+
     }
   }
 });
@@ -53,6 +56,12 @@ export const getters = {
   },
   getSizeInfos: state => {
     return state.productData.sizeInfos;
+  },
+  getMaterialInfos: state => {
+    return state.productData.materialInfos;
+  },
+  getWearInfos: state => {
+    return state.productData.wearInfos;
   }
 };
 
