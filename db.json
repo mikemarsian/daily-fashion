@@ -8,17 +8,10 @@
       "price":50,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "quantities": {
-        "xs": 0,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
-      },
       "sizeInfo": "small",
       "materialInfo": "silk",
       "wearInfo": "baggy",
-      "galleryImagesCount": 4
+      "galleryImagesCount": 5
     },
     {
       "id":2,
@@ -26,16 +19,9 @@
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       "bulletDescription": "So baggy and yet hugs all the right places. Big hidden pockets. Front zipper so you can zip yourself in. Silk material, reinforced stitching",
       "price":35,
+      "sizeInfo": "",
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "quantities": {
-        "xs": 0,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
-      },
-      "sizeInfo": "",
       "materialInfo": "silk",
       "wearInfo": "baggy",
       "galleryImagesCount": 1
@@ -48,16 +34,10 @@
       "price":110,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "quantities": {
-        "xs": 0,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
-      },
       "sizeInfo": "big",
       "materialInfo": "silk",
-      "wearInfo": "baggy"
+      "wearInfo": "baggy",
+      "galleryImagesCount": 1
     },
     {
       "id":4,
@@ -67,16 +47,10 @@
       "price":50,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "quantities": {
-        "xs": 0,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
-      },
       "sizeInfo": "big",
       "materialInfo": "silk",
-      "wearInfo": "baggy"
+      "wearInfo": "baggy",
+      "galleryImagesCount": 1
     },
     {
       "id":5,
@@ -86,16 +60,10 @@
       "price":35,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "quantities": {
-        "xs": 0,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
-      },
       "sizeInfo": "big",
       "materialInfo": "silk",
-      "wearInfo": "baggy"
+      "wearInfo": "baggy",
+      "galleryImagesCount": 1
     },
     {
       "id":6,
@@ -105,16 +73,10 @@
       "price":110,
       "isAddedToCart":false,
       "isAddedBtn":false,
-      "quantities": {
-        "xs": 2,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
-      },
       "sizeInfo": "big",
       "materialInfo": "silk",
-      "wearInfo": "baggy"
+      "wearInfo": "baggy",
+      "galleryImagesCount": 1
     }
   ],
   "productData": {
@@ -131,6 +93,58 @@
       "tight": "These will cover your body nice and tight"
     }
   },
+  "productQuantities": [
+    {
+      "id": 1,
+      "quantities": {
+        "xs": 0,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      }
+    },
+    {
+      "id": 2,
+      "quantities": {
+        "xs": 2,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      }
+    },
+    {
+      "id": 3,
+      "quantities": {
+        "xs": 2,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      }
+    },
+    {
+      "id": 4,
+      "quantities": {
+        "xs": 2,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      }
+    },
+    {
+      "id": 5,
+      "quantities": {
+        "xs": 2,
+        "s": 57,
+        "m": 14,
+        "l": 16,
+        "xl": 22
+      }
+    }
+  ],
   "userInfo":{
     "isLoggedIn":false,
     "isSignedUp":false,

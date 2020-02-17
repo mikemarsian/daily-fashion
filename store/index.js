@@ -67,22 +67,30 @@ export const getters = {
 
 export const mutations = {
   loadProducts: (state, products) => {
+    console.log(`Store: storing ${products.length} products`);
     state.products = products;
+    // state.products.forEach(product => {
+    //   product.isAddedToCart = false;
+    //   product.isAddedBtn = false;
+    // });
   },
   loadGeneralProductData: (state, productData) => {
+    console.log(`Store: storing product data`);
     state.productData = productData;
   },
   addToCart: (state, id) => {
-    state.products.forEach(el => {
-      if (id === el.id) {
-        el.isAddedToCart = true;
+    state.products.forEach(product => {
+      if (id === product.id) {
+        console.log(`Store: adding product ${id} to cart`);
+        product.isAddedToCart = true;
       }
     });
   },
   setAddedBtn: (state, data) => {
-    state.products.forEach(el => {
-      if (data.id === el.id) {
-        el.isAddedBtn = data.status;
+    state.products.forEach(product => {
+      if (data.id === product.id) {
+        console.log(`Store: setAddedBtn=${data.status} for product ${product.id}`);
+        product.isAddedBtn = data.status;
       }
     });
   },
