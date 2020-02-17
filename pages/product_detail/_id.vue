@@ -3,7 +3,7 @@
     <div class="card is-clearfix columns">
 
       <div class="card-content column is-half">
-        <carousel :perPage="1" :autoplay="false" :autoplayHoverPause="true">
+        <carousel :perPage="1" :autoplay="true" :autoplayHoverPause="true">
           <template v-for="imageSrc in galleryImages">
             <slide>
               <img :src="imageSrc"/>

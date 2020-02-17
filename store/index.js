@@ -68,11 +68,11 @@ export const getters = {
 export const mutations = {
   loadProducts: (state, products) => {
     console.log(`Store: storing ${products.length} products`);
+    products.forEach(product => {
+      product.isAddedToCart = false;
+      product.isAddedBtn = false;
+    });
     state.products = products;
-    // state.products.forEach(product => {
-    //   product.isAddedToCart = false;
-    //   product.isAddedBtn = false;
-    // });
   },
   loadGeneralProductData: (state, productData) => {
     console.log(`Store: storing product data`);
