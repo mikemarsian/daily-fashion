@@ -132,17 +132,5 @@
         "xl": 22
       }
     }
-  ],
-  "userInfo":{
-    "isLoggedIn":false,
-    "isSignedUp":false,
-    "hasSearched":false,
-    "name":"",
-    "productTitleSearched":""
-  },
-  "systemInfo":{
-    "openLoginModal":false,
-    "openSignupModal":false,
-    "openCheckoutModal":false
-  }
+  ]
 }
