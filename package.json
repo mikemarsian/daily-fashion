@@ -9,8 +9,9 @@
     "now-build": "nuxt generate",
     "css-build": "node-sass --omit-source-map-url sass/mystyles.scss css/mystyles.css",
     "css-watch": "npm run css-build -- --watch",
+    "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "yarn run production"
   },
   "repository": {
     "type": "git",
