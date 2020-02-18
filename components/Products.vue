@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+      <figure class="image">
+        <img :src="imgSrc"/>
       </figure>
     </div>
     <div class="card-content">
@@ -58,7 +58,8 @@ export default {
       viewDetailsLabel: 'Details',
       removeFromCartLabel: 'Remove from cart',
       selected: 1,
-      quantityArray: []
+      quantityArray: [],
+      imgSrc: ""
     }
   },
 
@@ -70,6 +71,8 @@ export default {
     if (this.$props.product.quantity > 1) {
       this.selected = this.$props.product.quantity;
     }
+
+    this.imgSrc = require(`~/assets/img/products/${this.$props.product.id}/gallery/1.jpg`)
   },
 
   computed: {
