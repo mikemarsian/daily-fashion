@@ -84,53 +84,350 @@
   "productQuantities": [
     {
       "id": 1,
-      "quantities": {
-        "xs": 0,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
+      "skuQuantities": {
+        "10": 0,
+        "11": 5,
+        "12": 30,
+        "13": 10,
+        "14": 4
       }
     },
     {
       "id": 2,
-      "quantities": {
-        "xs": 2,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
+      "skuQuantities": {
+        "21": 3,
+        "22": 5,
+        "23": 30,
+        "24": 10,
+        "25": 4,
+        "26": 6,
+        "27": 4,
+        "28": 1
       }
     },
     {
       "id": 3,
-      "quantities": {
-        "xs": 2,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
+      "skuQuantities": {
+        "31": 1,
+        "32": 5,
+        "33": 30,
+        "34": 10,
+        "35": 4,
+        "36": 6,
+        "37": 4,
+        "38": 1
       }
     },
     {
       "id": 4,
-      "quantities": {
-        "xs": 2,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
+      "skuQuantities": {
+        "41": 8,
+        "42": 5,
+        "43": 30,
+        "44": 10
       }
+    }
+  ],
+  "productSKUs": [
+    {
+      "id": 1,
+      "skus": [
+        {
+          "id": 11,
+          "size": "xs",
+          "color": "red",
+          "material": "silk"
+        },
+        {
+          "id": 12,
+          "size": "s",
+          "color": "red",
+          "material": "silk"
+        },
+        {
+          "id": 13,
+          "size": "m",
+          "color": "red",
+          "material": "silk"
+        },
+        {
+          "id": 14,
+          "size": "l",
+          "color": "red",
+          "material": "silk"
+        },
+        {
+          "id": 15,
+          "size": "xl",
+          "color": "red",
+          "material": "silk"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "skus": [
+        {
+          "id": 21,
+          "size": "xs",
+          "color": "yellow",
+          "material": "silk"
+        },
+        {
+          "id": 22,
+          "size": "s",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 23,
+          "size": "l",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 24,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 25,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 26,
+          "size": "s",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 27,
+          "size": "xl",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 28,
+          "size": "xl",
+          "color": "red",
+          "material": "silk"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "skus": [
+        {
+          "id": 31,
+          "size": "xs",
+          "color": "blue",
+          "material": "silk"
+        },
+        {
+          "id": 32,
+          "size": "s",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 33,
+          "size": "l",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 34,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 35,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 36,
+          "size": "s",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 37,
+          "size": "xl",
+          "color": "blue",
+          "material": "silk"
+        },
+        {
+          "id": 38,
+          "size": "xl",
+          "color": "pink",
+          "material": "silk"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "skus": [
+        {
+          "id": 41,
+          "size": "xs",
+          "color": "orange",
+          "material": "silk"
+        },
+        {
+          "id": 42,
+          "size": "s",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 43,
+          "size": "l",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 44,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 45,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 46,
+          "size": "s",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 47,
+          "size": "xl",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 48,
+          "size": "xl",
+          "color": "yellow",
+          "material": "silk"
+        }
+      ]
     },
     {
       "id": 5,
-      "quantities": {
-        "xs": 2,
-        "s": 57,
-        "m": 14,
-        "l": 16,
-        "xl": 22
-      }
+      "skus": [
+        {
+          "id": 51,
+          "size": "xs",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 52,
+          "size": "s",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 53,
+          "size": "l",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 54,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 55,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 56,
+          "size": "s",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 57,
+          "size": "xl",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 58,
+          "size": "xl",
+          "color": "red",
+          "material": "silk"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "skus": [
+        {
+          "id": 61,
+          "size": "xs",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 62,
+          "size": "s",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 63,
+          "size": "l",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 64,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 65,
+          "size": "xl",
+          "color": "black",
+          "material": "silk"
+        },
+        {
+          "id": 66,
+          "size": "s",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 67,
+          "size": "xl",
+          "color": "green",
+          "material": "silk"
+        },
+        {
+          "id": 68,
+          "size": "xl",
+          "color": "red",
+          "material": "silk"
+        }
+      ]
     }
   ]
 }

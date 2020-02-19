@@ -38,6 +38,15 @@
           </div>
         </div>
         <SfDivider />
+
+        <SfOptions
+          v-model="colorValue"
+          :options="colorOptions['color']"
+          :type="'color'"
+          :label="'Color'"
+          @input="colorSelected"
+        />
+        <br/>
         <SfOptions
           v-model="sizeValue"
           :options="options[sizeType]"
@@ -52,7 +61,7 @@
           <div class="select is-rounded is-small is-pulled-right">
             <select @change="onSelectQuantity(product.id)"
                     v-model="selectedQuantity"
-                    :disabled="noSizesLeft()">
+                    :disabled="noItemsLeft()">
               <option v-for="quantity in this.quantitiesSelect" :value="quantity">{{ quantity }}</option>
             </select>
           </div>
@@ -63,16 +72,9 @@
           </SfPrice>
         </div>
         <div class="card-content__btn is-pulled-right">
-<!--            <SfAddToCart-->
-<!--              v-if="!isAddedBtn"-->
-<!--              v-model="selectedQuantity"-->
-<!--              :disabled="noSizesLeft()"-->
-<!--              @click="() => {}"-->
-<!--              @input="onSelectQuantity(product.id)"-->
-<!--            />-->
             <button class="button is-primary"
                     v-if="!isAddedBtn"
-                    :disabled="noSizesLeft()"
+                    :disabled="noItemsLeft()"
                     @click="cartAdd(product.id)">{{ addToCartLabel }}</button>
             <button class="button is-text" v-if="isAddedBtn" @click="cartRemove(product.id)">{{ removeFromCartLabel }}</button>
           </div>
@@ -82,7 +84,7 @@
 </template>
 
 <script>
-  import { SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart } from "@storefront-ui/vue";
+  import { SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart, SfProductOption } from "@storefront-ui/vue";
   import { mapGetters, mapMutations } from 'vuex';
   import { Carousel, Slide } from 'vue-carousel';
   import ProductService from '@/services/ProductService.js';
@@ -98,7 +100,7 @@
   },
 
     components: {
-    SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart,
+    SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart, SfProductOption,
     Carousel, Slide
   },
 
@@ -109,6 +111,11 @@
         sizeLabel: "Size",
         sizeType: "text",
         sizeInfoDesc: "",
+        colorValue: "",
+        colorOptions: {
+          color: []
+        },
+        skuColorLabel: "Color",
         gallerySliderOptions: { autoplay: false, rewind: true },
         materialInfoDesc: "",
         galleryImages: [],
@@ -131,15 +138,13 @@
           materialInfo: "",
           wearInfo: ""
         },
+        productSKU: {
+          size: "",
+          color: "",
+          material: ""
+        },
         selectedQuantity: 1,
-        quantities: [
-          {
-            "xs": 1,
-            "s": 1,
-            "m": 1,
-            "l": 1,
-            "xl": 1
-          },
+        skuQuantities: [
         ],
         quantitiesSelect: []
       };
@@ -149,7 +154,6 @@
       this.setProduct();
       console.log(`Loaded product: ${this.product.name}`);
 
-      console.log(`this.product=${this.product}`);
       this.sizeInfoDesc = this.product.sizeInfo.length ? this.getSizeInfos[this.product.sizeInfo] : "";
       this.materialInfoDesc = this.product.materialInfo.length ? this.getMaterialInfos[this.product.materialInfo] : "";
       this.wearInfoDesc = this.product.wearInfo.length ? this.getWearInfos[this.product.wearInfo] : "";
@@ -163,12 +167,24 @@
       isAddedBtn () {
         return this.product.isAddedBtn;
       },
-      ...mapGetters(['getProductById', 'getSizeInfos', 'getMaterialInfos', 'getWearInfos'])
+      ...mapGetters(['getProductById', 'getProductSKUsById', 'getSizeInfos', 'getMaterialInfos', 'getWearInfos'])
     },
 
     methods: {
       setProduct() {
         this.product = this.getProductById(this.$route.params.id);
+        this.productSKUs = this.getProductSKUsById(this.$route.params.id);
+        this.productSKU = this.productSKUs[0];
+        this.sizeValue = this.productSKU.size;
+        this.colorValue = this.productSKU.color;
+        console.log(`mounted productSKU: ${JSON.stringify(this.productSKU)}`);
+      },
+      setProductSKU() {
+        let foundSKUs = this.productSKUs.filter(sku => {
+          return sku.size === this.sizeValue && sku.color === this.colorValue;
+        });
+        console.log(`setProductSKU to: ${JSON.stringify(foundSKUs[0])}`);
+        this.productSKU = foundSKUs[0];
       },
       getGalleryImages() {
         let productImagesArray = [];
@@ -181,28 +197,56 @@
       getGalleryImagePath(product_id, index) {
         return require(`~/assets/img/products/${product_id}/gallery/${index}.jpg`)
       },
-      noSizesLeft() {
-        return this.quantitiesForSize(this.sizeValue) < 1;
+      noItemsLeft() {
+        let status = this.productSKU === undefined ? true : this.quantitiesForSKU(this.productSKU) < 1;
+        console.log(`noItemsLeft: ${status}`);
+        return status;
       },
       zeroOrOne(max_quantity) {
         return max_quantity > 0 ? 1 : 0;
       },
-      quantitiesForSize(size) {
-        return this.quantities[size];
+      quantitiesForSKU(productSKU) {
+        let quantities = 0;
+        if (!(productSKU === undefined)) {
+          quantities = this.skuQuantities[productSKU.id] === undefined ? 0 : this.skuQuantities[productSKU.id]
+        }
+        console.log(`quantitiesForSKU productSKU=${JSON.stringify(productSKU)}: ***${quantities}***`);
+        return quantities;
       },
-      setQuantityForSize(sizeValue) {
-        this.selectedQuantity = this.zeroOrOne(this.quantitiesForSize(sizeValue));
+      setQuantityForSKU(productSKU) {
+        this.selectedQuantity = this.zeroOrOne(this.quantitiesForSKU(productSKU));
+      },
+      setColorOptions(){
+        let colors = [];
+        if (!(this.productSKUs === undefined)) {
+          colors = [...new Set(this.productSKUs.map(p => p.color))];
+          console.log(`setColorOptions: colors=${JSON.stringify(colors)}`);
+
+          let colorOptions = [];
+          colors.forEach(color => {
+            let colorOption = {};
+            colorOption.value = color;
+            colorOption.color = color;
+            colorOptions.push(colorOption)
+          });
+
+          this.colorOptions.color = colorOptions;
+          console.log(`this.colorOptions=${JSON.stringify(this.colorOptions)}`);
+        }
       },
       loadQuantities() {
-        this.quantities = [];
+        this.skuQuantities = [];
         console.log(`Getting quantities for ${this.product.name} ...`);
+
         // load quantities each time, to get the up-to-date stock
         ProductService.getProductQuantities(this.product.id)
           .then(response => {
-            console.log(`Got response`);
-            this.quantities = response.data.quantities;
+            console.log(`Got response : ${JSON.stringify((response.data))}`);
+            this.skuQuantities = response.data.skuQuantities;
             this.populateQuantitiesSelect();
-            this.setQuantityForSize(this.sizeValue);
+            this.setQuantityForSKU(this.productSKU);
+            console.log(`Setting color options...`);
+            this.setColorOptions();
           })
           .catch(error => {
             console.log('Error:' + error.response)
@@ -210,16 +254,18 @@
       },
       populateQuantitiesSelect() {
         this.quantitiesSelect = [];
-        for (let i = 1; i <= this.quantitiesForSize(this.sizeValue); i++) {
+        for (let i = 1; i <= this.quantitiesForSKU(this.productSKU); i++) {
           this.quantitiesSelect.push(i);
         }
       },
       sizeSelected() {
-        this.product.size = this.sizeValue;
-        console.log("Selected Size: "+ this.product.size);
-
-        this.setQuantityForSize(this.sizeValue);
+        this.setProductSKU();
+        this.setQuantityForSKU(this.productSKU);
         this.populateQuantitiesSelect();
+      },
+      colorSelected() {
+        console.log(`Selected color: ${JSON.stringify(this.colorValue)}`);
+        this.setProductSKU();
       },
       cartAdd (id) {
         let data = {

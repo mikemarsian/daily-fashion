@@ -33,6 +33,9 @@ export const getters = {
   getProductById: state => id => {
     return state.products.find(product => product.id == id);
   },
+  getProductSKUsById: state => id => {
+    return state.productSKUs.find(productSKU => productSKU.id == id).skus;
+  },
   isUserLoggedIn: state => {
     return state.userInfo.isLoggedIn;
   },
@@ -77,6 +80,10 @@ export const mutations = {
   loadGeneralProductData: (state, productData) => {
     console.log(`Store: storing product data`);
     state.productData = productData;
+  },
+  loadProductSKUs: (state, productSKUs) => {
+    console.log(`Store: storing product SKUs`);
+    state.productSKUs = productSKUs;
   },
   addToCart: (state, id) => {
     state.products.forEach(product => {

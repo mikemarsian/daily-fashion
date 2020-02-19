@@ -31,7 +31,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['loadProducts', 'loadGeneralProductData']),
+    ...mapMutations(['loadProducts', 'loadGeneralProductData', 'loadProductSKUs']),
   },
 
   created() {
@@ -48,6 +48,14 @@ export default {
         .then(response => {
           console.log('Committing general product data...');
           this.loadGeneralProductData(response.data);
+        })
+        .catch(error => {
+          console.log('Error:' + error.response)
+        });
+      ProductService.getProductSKUs()
+        .then(response => {
+          console.log('Committing product SKUs...');
+          this.loadProductSKUs(response.data);
         })
         .catch(error => {
           console.log('Error:' + error.response)

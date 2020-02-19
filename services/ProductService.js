@@ -22,4 +22,7 @@ export default {
   getProductQuantities(productId) {
     return apiClient.get('/productQuantities/' + productId)
   },
+  getProductSKUs() {
+    return apiClient.get('/productSKUs/')
+  },
 }
