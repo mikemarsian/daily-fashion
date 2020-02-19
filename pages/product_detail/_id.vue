@@ -47,6 +47,16 @@
           @input="colorSelected"
         />
         <br/>
+
+        <SfOptions
+          v-model="materialValue"
+          :options="materialOptions['text']"
+          :type="'text'"
+          :label="'Material'"
+          @input="materialSelected"
+        />
+        <br/>
+
         <SfOptions
           v-model="sizeValue"
           :options="options[sizeType]"
@@ -115,7 +125,10 @@
         colorOptions: {
           color: []
         },
-        skuColorLabel: "Color",
+        materialValue: "",
+        materialOptions: {
+          text: []
+        },
         gallerySliderOptions: { autoplay: false, rewind: true },
         materialInfoDesc: "",
         galleryImages: [],
@@ -177,11 +190,12 @@
         this.productSKU = this.productSKUs[0];
         this.sizeValue = this.productSKU.size;
         this.colorValue = this.productSKU.color;
+        this.materialValue = this.productSKU.material;
         console.log(`mounted productSKU: ${JSON.stringify(this.productSKU)}`);
       },
       setProductSKU() {
         let foundSKUs = this.productSKUs.filter(sku => {
-          return sku.size === this.sizeValue && sku.color === this.colorValue;
+          return sku.size === this.sizeValue && sku.color === this.colorValue && sku.material == this.materialValue;
         });
         console.log(`setProductSKU to: ${JSON.stringify(foundSKUs[0])}`);
         this.productSKU = foundSKUs[0];
@@ -234,6 +248,23 @@
           console.log(`this.colorOptions=${JSON.stringify(this.colorOptions)}`);
         }
       },
+      setMaterialOptions(){
+        let materials = [];
+        if (!(this.productSKUs === undefined)) {
+          materials = [...new Set(this.productSKUs.map(p => p.material))];
+
+          let materialOptions = [];
+          materials.forEach(material => {
+            let materialOption = {};
+            materialOption.value = material;
+            materialOption.text = material.charAt(0).toUpperCase() + material.slice(1);
+            materialOptions.push(materialOption)
+          });
+
+          this.materialOptions.text = materialOptions;
+          console.log(`this.materialOptions=${JSON.stringify(this.materialOptions)}`);
+        }
+      },
       loadQuantities() {
         this.skuQuantities = [];
         console.log(`Getting quantities for ${this.product.name} ...`);
@@ -247,6 +278,8 @@
             this.setQuantityForSKU(this.productSKU);
             console.log(`Setting color options...`);
             this.setColorOptions();
+            console.log(`Setting material options...`);
+            this.setMaterialOptions();
           })
           .catch(error => {
             console.log('Error:' + error.response)
@@ -264,7 +297,11 @@
         this.populateQuantitiesSelect();
       },
       colorSelected() {
-        console.log(`Selected color: ${JSON.stringify(this.colorValue)}`);
+        console.log(`Selected color: ${this.colorValue}`);
+        this.setProductSKU();
+      },
+      materialSelected() {
+        console.log(`Selected material: ${this.materialValue}`);
         this.setProductSKU();
       },
       cartAdd (id) {

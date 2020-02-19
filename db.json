@@ -189,19 +189,19 @@
           "id": 24,
           "size": "xl",
           "color": "black",
-          "material": "silk"
+          "material": "nylon"
         },
         {
           "id": 25,
           "size": "xl",
           "color": "black",
-          "material": "silk"
+          "material": "nylon"
         },
         {
           "id": 26,
           "size": "s",
           "color": "green",
-          "material": "silk"
+          "material": "cotton"
         },
         {
           "id": 27,
@@ -214,6 +214,12 @@
           "size": "xl",
           "color": "red",
           "material": "silk"
+        },
+        {
+          "id": 29,
+          "size": "xl",
+          "color": "red",
+          "material": "cotton"
         }
       ]
     },
