@@ -59,9 +59,9 @@
 
         <SfOptions
           v-model="sizeValue"
-          :options="options[sizeType]"
-          :type="sizeType"
-          :label="sizeLabel"
+          :options="sizeOptions['text']"
+          :type="'text'"
+          :label="'Size'"
           @input="sizeSelected"
         />
         <br/>
@@ -116,11 +116,10 @@
 
     data () {
       return {
-        descBullets: "",
         sizeValue: "m",
-        sizeLabel: "Size",
-        sizeType: "text",
-        sizeInfoDesc: "",
+        sizeOptions: {
+          text: []
+        },
         colorValue: "",
         colorOptions: {
           color: []
@@ -129,20 +128,16 @@
         materialOptions: {
           text: []
         },
-        gallerySliderOptions: { autoplay: false, rewind: true },
+        gallerySliderOptions: {
+          autoplay: false,
+          rewind: true
+        },
         materialInfoDesc: "",
         galleryImages: [],
         currentGalleryImage: 1,
+        descBullets: "",
         wearInfoDesc: "",
-        options: {
-          text: [
-            {value: "xs", text: "XS"},
-            {value: "s", text: "S"},
-            {value: "m", text: "M"},
-            {value: "l", text: "L"},
-            {value: "xl", text: "XL"}
-          ],
-        },
+        sizeInfoDesc: "",
         addToCartLabel: 'Add to cart',
         removeFromCartLabel: 'Remove from cart',
         product: {
@@ -157,8 +152,7 @@
           material: ""
         },
         selectedQuantity: 1,
-        skuQuantities: [
-        ],
+        skuQuantities: [],
         quantitiesSelect: []
       };
     },
@@ -231,39 +225,36 @@
         this.selectedQuantity = this.zeroOrOne(this.quantitiesForSKU(productSKU));
       },
       setColorOptions(){
-        let colors = [];
         if (!(this.productSKUs === undefined)) {
-          colors = [...new Set(this.productSKUs.map(p => p.color))];
-          console.log(`setColorOptions: colors=${JSON.stringify(colors)}`);
-
-          let colorOptions = [];
-          colors.forEach(color => {
-            let colorOption = {};
-            colorOption.value = color;
-            colorOption.color = color;
-            colorOptions.push(colorOption)
-          });
-
-          this.colorOptions.color = colorOptions;
-          console.log(`this.colorOptions=${JSON.stringify(this.colorOptions)}`);
+          let colors = [...new Set(this.productSKUs.map(p => p.color))];
+          this.colorOptions.color = this.createOptionsArray(colors, 'color');
+          console.log(`Set colorOptions to: ${JSON.stringify(this.colorOptions)}`);
         }
       },
       setMaterialOptions(){
-        let materials = [];
         if (!(this.productSKUs === undefined)) {
-          materials = [...new Set(this.productSKUs.map(p => p.material))];
-
-          let materialOptions = [];
-          materials.forEach(material => {
-            let materialOption = {};
-            materialOption.value = material;
-            materialOption.text = material.charAt(0).toUpperCase() + material.slice(1);
-            materialOptions.push(materialOption)
-          });
-
-          this.materialOptions.text = materialOptions;
-          console.log(`this.materialOptions=${JSON.stringify(this.materialOptions)}`);
+          let materials = [...new Set(this.productSKUs.map(p => p.material))];
+          this.materialOptions.text = this.createOptionsArray(materials, 'text');
+          console.log(`Set materialOptions to: ${JSON.stringify(this.materialOptions)}`);
         }
+      },
+      setSizeOptions(){
+        if (!(this.productSKUs === undefined)) {
+          let sizes = [...new Set(this.productSKUs.map(p => p.size))];
+          this.sizeOptions.text = this.createOptionsArray(sizes, 'text');
+          console.log(`Set sizeOptions to: ${JSON.stringify(this.sizeOptions)}`);
+        }
+      },
+      createOptionsArray(skuPropArray, valuePropName) {
+        let options = [];
+        skuPropArray.forEach(prop => {
+          let option = {
+            value: prop,
+          };
+          option[valuePropName] = prop.charAt(0).toUpperCase() + prop.slice(1);
+          options.push(option)
+        });
+        return options;
       },
       loadQuantities() {
         this.skuQuantities = [];
@@ -276,8 +267,13 @@
             this.skuQuantities = response.data.skuQuantities;
             this.populateQuantitiesSelect();
             this.setQuantityForSKU(this.productSKU);
+
+            console.log(`Setting size options...`);
+            this.setSizeOptions();
+
             console.log(`Setting color options...`);
             this.setColorOptions();
+
             console.log(`Setting material options...`);
             this.setMaterialOptions();
           })
