@@ -44,7 +44,7 @@
           :options="colorOptions['color']"
           :type="'color'"
           :label="'Color'"
-          @input="colorSelected"
+          @input="skuSelected"
         />
         <br/>
 
@@ -53,7 +53,7 @@
           :options="materialOptions['text']"
           :type="'text'"
           :label="'Material'"
-          @input="materialSelected"
+          @input="skuSelected"
         />
         <br/>
 
@@ -62,7 +62,7 @@
           :options="sizeOptions['text']"
           :type="'text'"
           :label="'Size'"
-          @input="sizeSelected"
+          @input="skuSelected"
         />
         <br/>
         <SfAlert :message="this.sizeInfoDesc" :type="'info'" v-if="this.sizeInfoDesc.length > 0"/>
@@ -106,12 +106,12 @@
     name: 'product_detail-id',
 
     validate ({ params }) {
-    return /^\d+$/.test(params.id)
+      return /^\d+$/.test(params.id)
   },
 
     components: {
-    SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart, SfProductOption,
-    Carousel, Slide
+      SfOptions, SfCharacteristic, SfDivider, SfPrice, SfAlert, SfAddToCart, SfProductOption,
+      Carousel, Slide
   },
 
     data () {
@@ -185,7 +185,6 @@
         this.sizeValue = this.productSKU.size;
         this.colorValue = this.productSKU.color;
         this.materialValue = this.productSKU.material;
-        console.log(`mounted productSKU: ${JSON.stringify(this.productSKU)}`);
       },
       setProductSKU() {
         let foundSKUs = this.productSKUs.filter(sku => {
@@ -287,18 +286,10 @@
           this.quantitiesSelect.push(i);
         }
       },
-      sizeSelected() {
+      skuSelected() {
         this.setProductSKU();
         this.setQuantityForSKU(this.productSKU);
         this.populateQuantitiesSelect();
-      },
-      colorSelected() {
-        console.log(`Selected color: ${this.colorValue}`);
-        this.setProductSKU();
-      },
-      materialSelected() {
-        console.log(`Selected material: ${this.materialValue}`);
-        this.setProductSKU();
       },
       cartAdd (id) {
         let data = {
@@ -323,7 +314,7 @@
         };
         this.quantity(data);
       },
-      ...mapMutations(['quantity', 'setAddedBtn', 'addToCart', 'removeFromCart'])
+      ...mapMutations(['quantity', 'setAddedBtn', 'addToCart', 'removeFromCart', 'loadProducts'])
     }
 };
 </script>

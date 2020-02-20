@@ -90,8 +90,8 @@ export default {
 			this.$store.commit('showCheckoutModal', false);
 
 			if (reloadPage) {
-				window.location.reload();
-			}
+        window.location.href = "/";
+      }
 		},
 		removeFromCart (id) {
 			let data = {

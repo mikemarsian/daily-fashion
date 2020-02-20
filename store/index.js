@@ -21,7 +21,10 @@ export const state = () => ({
     wearInfos: {
 
     }
-  }
+  },
+  productSKUs: [
+
+  ]
 });
 
 export const getters = {
